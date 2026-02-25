@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔄 Giratoire Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+  <div class="crt">
+
+    <!-- TITLE SCREEN -->
+    <div id="screen-title" class="screen active">
+      <div class="title-art">
+        <div class="roundabout-icon">🔄</div>
+        <h1>GIRATOIRE<br>CHALLENGE</h1>
+        <p class="subtitle">Trouve l'itinéraire avec le plus de ronds-points !</p>
+      </div>
+      <div class="blink-text">APPUIE SUR START</div>
+      <button id="btn-start" class="arcade-btn start-btn">▶ START</button>
+      <button id="btn-scores" class="arcade-btn scores-btn">🏆 SCORES</button>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="screen-game" class="screen">
+      <h2 class="screen-title">🗺️ NOUVELLE PARTIE</h2>
+      <form id="game-form" autocomplete="off">
+        <div class="form-group">
+          <label for="pseudo">PSEUDO</label>
+          <input type="text" id="pseudo" maxlength="20" placeholder="AAA" required>
+        </div>
+        <div class="form-group autocomplete-group">
+          <label for="ville-depart">🏁 VILLE DE DÉPART</label>
+          <input type="text" id="ville-depart" placeholder="Paris" required autocomplete="off">
+          <div class="autocomplete-list" id="ac-depart"></div>
+        </div>
+        <div class="form-group autocomplete-group">
+          <label for="ville-arrivee">🏁 VILLE D'ARRIVÉE</label>
+          <input type="text" id="ville-arrivee" placeholder="Marseille" required autocomplete="off">
+          <div class="autocomplete-list" id="ac-arrivee"></div>
+        </div>
+        <button type="submit" class="arcade-btn go-btn">🔄 C'EST PARTI !</button>
+      </form>
+      <button id="btn-back-title" class="arcade-btn back-btn">← RETOUR</button>
+
+      <!-- Loading overlay -->
+      <div id="loading" class="loading hidden">
+        <div class="spinner">🔄</div>
+        <p>Calcul de l'itinéraire...</p>
+        <p class="loading-sub">Comptage des ronds-points en cours...</p>
+      </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div id="screen-result" class="screen">
+      <h2 class="screen-title">📊 RÉSULTAT</h2>
+      <div id="result-display" class="result-box">
+        <div class="result-route" id="result-route"></div>
+        <div class="result-roundabouts">
+          <span class="big-number" id="result-count">0</span>
+          <span class="result-label">RONDS-POINTS</span>
+        </div>
+        <div class="result-details">
+          <div class="detail">
+            <span class="detail-value" id="result-distance">0</span>
+            <span class="detail-label">KM</span>
+          </div>
+          <div class="detail">
+            <span class="detail-value" id="result-ratio">0</span>
+            <span class="detail-label">/ 100 KM</span>
+          </div>
+          <div class="detail">
+            <span class="detail-value" id="result-rank">#?</span>
+            <span class="detail-label">RANG</span>
+          </div>
+        </div>
+      </div>
+      <button id="btn-retry" class="arcade-btn go-btn">🔄 REJOUER</button>
+      <button id="btn-to-scores" class="arcade-btn scores-btn">🏆 CLASSEMENT</button>
+    </div>
+
+    <!-- LEADERBOARD SCREEN -->
+    <div id="screen-leaderboard" class="screen">
+      <h2 class="screen-title">🏆 CLASSEMENT</h2>
+      <div class="leaderboard-wrapper">
+        <table id="leaderboard-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>PSEUDO</th>
+              <th>TRAJET</th>
+              <th>🔄</th>
+              <th>KM</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body"></tbody>
+        </table>
+      </div>
+      <button id="btn-back-from-scores" class="arcade-btn back-btn">← RETOUR</button>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
